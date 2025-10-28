@@ -4,9 +4,11 @@ import os, datetime
 from jupyter_dash import JupyterDash
 from dash import dcc, html, dash_table, Input, Output, State
 
-WORKBOOK_PATH = r"C:/Users/user/OneDrive/Desktop/CENTRAL REGION 1ST FULLY PAID DATA (1).xlsx"
-SHEET_NAME = r"SALIMA"
-COLLECTED_FILE = r"C:/Users/user/OneDrive/Desktop/district_dashboards\\collected_salima.csv"
+BASE_DIR = os.path.dirname(__file__)
+WORKBOOK_PATH = os.path.join(BASE_DIR, "CENTRAL REGION 1ST FULLY PAID DATA (1).xlsx")
+COLLECTED_FILE = os.path.join(BASE_DIR, "collected_salima.csv")
+
+SHEET_NAME = "SALIMA"
 DISPLAY_FIELDS = ['Farmer Name', 'Contact', 'District', 'Delivery Mode', 'Delivery Centre', 'Order No', 'Products Code', 'Products Quantity', 'Order Total Price']
 
 # === Load sheet once to speed up searches ===
@@ -204,5 +206,8 @@ def mark_collected(n_clicks, query):
 def load_log(_):
     return load_collected().to_dict("records")
 
+
 if __name__ == "__main__":
-    app.run_server(mode="inline", debug=True)
+    import os
+    port = int(os.environ.get("PORT", 8050))
+    app.run_server(host="0.0.0.0", port=port, debug=False)

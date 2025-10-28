@@ -1,4 +1,6 @@
-pandas
-jupyter-dash
 dash
+jupyter-dash
+pandas
 openpyxl
+gunicorn
+
