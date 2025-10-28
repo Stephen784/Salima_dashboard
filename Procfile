@@ -1,2 +1,2 @@
-web: gunicorn lilongwe_dashboard:app
+web: gunicorn salima_dashboard:app
 
